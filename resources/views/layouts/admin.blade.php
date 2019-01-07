@@ -12,9 +12,10 @@
     <title>Admin</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
+
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,8 +24,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-
 
 
 </head>
@@ -45,7 +44,6 @@
             <a class="navbar-brand" href="/">Home</a>
         </div>
         <!-- /.navbar-header -->
-
 
 
         <ul class="nav navbar-top-links navbar-right">
@@ -73,10 +71,6 @@
         </ul>
 
 
-
-
-
-
         {{--<ul class="nav navbar-nav navbar-right">--}}
         {{--@if(auth()->guest())--}}
         {{--@if(!Request::is('auth/login'))--}}
@@ -98,299 +92,318 @@
         {{--</ul>--}}
 
 
-
-
-
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
                     {{--<li class="sidebar-search">--}}
-                        {{--<div class="input-group custom-search-form">--}}
-                            {{--<input type="text" class="form-control" placeholder="Search...">--}}
-                            {{--<span class="input-group-btn">--}}
-                                    {{--<button class="btn btn-default" type="button">--}}
-                                        {{--<i class="fa fa-search"></i>--}}
-                                    {{--</button>--}}
-                                {{--</span>--}}
-                        {{--</div>--}}
-                        {{--<!-- /input-group -->--}}
+                    {{--<div class="input-group custom-search-form">--}}
+                    {{--<input type="text" class="form-control" placeholder="Search...">--}}
+                    {{--<span class="input-group-btn">--}}
+                    {{--<button class="btn btn-default" type="button">--}}
+                    {{--<i class="fa fa-search"></i>--}}
+                    {{--</button>--}}
+                    {{--</span>--}}
+                    {{--</div>--}}
+                    {{--<!-- /input-group -->--}}
                     {{--</li>--}}
                     <li>
                         <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Panou de control</a>
                     </li>
 
                     {{--<li>--}}
-                        {{--<a href="#"><i class="fa fa-wrench fa-fw"></i>Utilizatori<span class="fa arrow"></span></a>--}}
-                        {{--<ul class="nav nav-second-level">--}}
-                            {{--<li>--}}
-                                {{--<a href="/users">Toți Utilizatorii</a>--}}
-                            {{--</li>--}}
-
-                            {{--<li>--}}
-                                {{--<a href="/users/create">Creare Utilizator</a>--}}
-                            {{--</li>--}}
-
-                        {{--</ul>--}}
-                        {{--<!-- /.nav-second-level -->--}}
+                    {{--<a href="#"><i class="fa fa-wrench fa-fw"></i>Utilizatori<span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                    {{--<a href="/users">Toți Utilizatorii</a>--}}
                     {{--</li>--}}
 
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Nomenclator<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/posts">Produse</a>
-                            </li>
+                    {{--<li>--}}
+                    {{--<a href="/users/create">Creare Utilizator</a>--}}
+                    {{--</li>--}}
 
-                            <li>
-                                <a href="/posts/create">Clienți</a>
-                            </li>
+                    {{--</ul>--}}
+                    {{--<!-- /.nav-second-level -->--}}
+                    {{--</li>--}}
 
-                            <li>
-                                <a href="/posts/create">Furnizori</a>
-                            </li>
+                    @if(Auth::user()->isAdmin())
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> NOMENCLATOR<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/posts">PRODUSE</a>
+                                </li>
 
-                            <li>
-                                <a href="/posts/create">înregistrare Comandă</a>
-                            </li>
+                                <li>
+                                    <a href="/posts/create">CLIENȚI</a>
+                                </li>
 
+                                <li>
+                                    <a href="/posts/create">FURNIZORI</a>
+                                </li>
 
+                                <li>
+                                    <a href="/posts/create">DIRECTORI DE VÂNZĂRI</a>
+                                </li>
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Definire<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/categories">Tipizat Contract</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Anexa</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Aviz</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Setări / Nivel de autoritate</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Directori de Vânzări</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Tipologie Fermieri</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Calcul Discount</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Limită de credit</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Cod de Legătură</a>
-                            </li>
-
-                            <li>
-                                <a href="/categories/create">Categorii</a>
-                            </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+                                <li>
+                                    <a href="/posts/create">CATEGORII</a>
+                                </li>
 
 
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
 
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Operațional<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Achiziții <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Recepții</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                            <li>
-                                <a href="#">Vânzări <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Anexe</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Fișă client</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Nota de comandă</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> DEFINIRE<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+
+                                <li>
+                                    <a href="{{route('admin.users.index')}}">ADMINISTRARE UTILIZATORI</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories">TIPIZAT CONTRACT</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">ANEXA</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">AVIZ</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">SETARI / NIVEL DE AUTORITATE </a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">TIPOLOGIE FERMIERI</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">CALCUL DISCOUNT</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">Calcul Discount</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">LIMITA DE CREDIT</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">COD DE LEGATURA</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">FISA DE CLIENT</a>
+                                </li>
+
+                                <li>
+                                    <a href="/categories/create">NOTA DE COMANDA</a>
+                                </li>
+
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                    @endif
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Raportare<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> OPERAȚIONAL<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">Achiziții <span class="fa arrow"></span></a>
+                                <a href="#">ACHIZIȚII <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="#">Listă Recepții</a>
+                                        <a href="#">CONTRACT FURNIZOR</a>
                                     </li>
+
                                     <li>
-                                        <a href="#">Marja pe contract</a>
+                                        <a href="#">RECEPȚIE</a>
                                     </li>
+
                                     <li>
-                                        <a href="#">Livrat / Rest de livrat</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Marja / Furnizor</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Marja / Produs</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alerte Scadențe</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                            <li>
-                                <a href="#">Vânzări <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Listă Anexe</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Marja pe contract</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Livrat / Rest de livrat</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Marja / DV</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Marja / Tip Fermier</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Alerte Scadențe</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Listă Limită de Credit</a>
+                                        <a href="#">NIR</a>
                                     </li>
 
                                 </ul>
                                 <!-- /.nav-third-level -->
                             </li>
                             <li>
-                                <a href="#">RAPORT CORELARE RECEPTII CU ANEXE </a>
-                            </li>
-                            <li>
-                                <a href="#">PREVIZIUNE MARJA FINALA ( DIFERENTA DINTRE ACHIZITIE SI VANZARE )</a>
+                                <a href="#">VÂNZARE <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="#">CONTRACT CLIENT</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">ANEXĂ</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">AVIZ</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-third-level -->
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    @if(Auth::user()->isAdmin())
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> RAPORTARE<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">ACHIZIȚII <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">LISTĂ RECEPȚII</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">MARJA PE CONTRACT</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">LIVRAT / REST DE LIVRAT</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">MARJA / FURNIZOR</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">MARJA / PRODUS</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">RAPORT SCADENȚE</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <li>
+                                    <a href="#">VÂNZĂRI <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="#">LISTĂ ANEXE</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">MARJA PE CONTRACT</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">LIVRAT / REST DE LIVRAT</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">MARJA / DV</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">MARJA / TIP FERMIER</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">RAPORT SCADENȚE</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">LISTĂ LIMITĂ DE CREDIT</a>
+                                        </li>
+
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <li>
+                                    <a href="#">RAPORT CORELARE RECEPTII CU ANEXE </a>
+                                </li>
+                                <li>
+                                    <a href="#">PREVIZIUNE MARJA FINALA (DIFERENTA DINTRE ACHIZITIE SI VANZARE)</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                    @endif
 
 
-
-
                     {{--<li>--}}
-                        {{--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>--}}
-                        {{--<ul class="nav nav-second-level">--}}
-                            {{--<li>--}}
-                                {{--<a href="flot.html">Flot Charts</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="morris.html">Morris.js Charts</a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                        {{--<!-- /.nav-second-level -->--}}
+                    {{--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                    {{--<a href="flot.html">Flot Charts</a>--}}
                     {{--</li>--}}
                     {{--<li>--}}
-                        {{--<a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>--}}
+                    {{--<a href="morris.html">Morris.js Charts</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--<!-- /.nav-second-level -->--}}
                     {{--</li>--}}
                     {{--<li>--}}
-                        {{--<a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>--}}
+                    {{--<a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>--}}
                     {{--</li>--}}
                     {{--<li>--}}
-                        {{--<a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>--}}
-                        {{--<ul class="nav nav-second-level">--}}
-                            {{--<li>--}}
-                                {{--<a href="panels-wells.html">Panels and Wells</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="buttons.html">Buttons</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="notifications.html">Notifications</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="typography.html">Typography</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="icons.html"> Icons</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="grid.html">Grid</a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                        {{--<!-- /.nav-second-level -->--}}
+                    {{--<a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>--}}
                     {{--</li>--}}
                     {{--<li>--}}
-                        {{--<a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>--}}
-                        {{--<ul class="nav nav-second-level">--}}
-                            {{--<li>--}}
-                                {{--<a href="#">Second Level Item</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="#">Second Level Item</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="#">Third Level <span class="fa arrow"></span></a>--}}
-                                {{--<ul class="nav nav-third-level">--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">Third Level Item</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">Third Level Item</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">Third Level Item</a>--}}
-                                    {{--</li>--}}
-                                    {{--<li>--}}
-                                        {{--<a href="#">Third Level Item</a>--}}
-                                    {{--</li>--}}
-                                {{--</ul>--}}
-                                {{--<!-- /.nav-third-level -->--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                        {{--<!-- /.nav-second-level -->--}}
+                    {{--<a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                    {{--<a href="panels-wells.html">Panels and Wells</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="buttons.html">Buttons</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="notifications.html">Notifications</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="typography.html">Typography</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="icons.html"> Icons</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="grid.html">Grid</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--<!-- /.nav-second-level -->--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Second Level Item</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Second Level Item</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Third Level <span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-third-level">--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Third Level Item</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Third Level Item</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Third Level Item</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="#">Third Level Item</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--<!-- /.nav-third-level -->--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--<!-- /.nav-second-level -->--}}
                     {{--</li>--}}
                     {{--<li class="active">--}}
-                        {{--<a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>--}}
-                        {{--<ul class="nav nav-second-level">--}}
-                            {{--<li>--}}
-                                {{--<a class="active" href="blank.html">Blank Page</a>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                                {{--<a href="login.html">Login Page</a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                        {{--<!-- /.nav-second-level -->--}}
+                    {{--<a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>--}}
+                    {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                    {{--<a class="active" href="blank.html">Blank Page</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                    {{--<a href="login.html">Login Page</a>--}}
+                    {{--</li>--}}
+                    {{--</ul>--}}
+                    {{--<!-- /.nav-second-level -->--}}
                     {{--</li>--}}
                 </ul>
 
@@ -402,49 +415,42 @@
     </nav>
 
 
-
-
-
     {{--<div class="navbar-default sidebar" role="navigation">--}}
-        {{--<div class="sidebar-nav navbar-collapse">--}}
-            {{--<ul class="nav" id="side-menu">--}}
-                {{--<li>--}}
-                    {{--<a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>--}}
-                {{--</li>--}}
+    {{--<div class="sidebar-nav navbar-collapse">--}}
+    {{--<ul class="nav" id="side-menu">--}}
+    {{--<li>--}}
+    {{--<a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>--}}
+    {{--</li>--}}
 
 
 
 
-                {{--<li>--}}
-                    {{--<a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>--}}
-                    {{--<ul class="nav nav-second-level">--}}
-                        {{--<li>--}}
-                            {{--<a href="">All Posts</a>--}}
-                        {{--</li>--}}
+    {{--<li>--}}
+    {{--<a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>--}}
+    {{--<ul class="nav nav-second-level">--}}
+    {{--<li>--}}
+    {{--<a href="">All Posts</a>--}}
+    {{--</li>--}}
 
-                        {{--<li>--}}
-                            {{--<a href="">Create Post</a>--}}
-                        {{--</li>--}}
+    {{--<li>--}}
+    {{--<a href="">Create Post</a>--}}
+    {{--</li>--}}
 
-                    {{--</ul>--}}
-                    {{--<!-- /.nav-second-level -->--}}
-                {{--</li>--}}
-
-
+    {{--</ul>--}}
+    {{--<!-- /.nav-second-level -->--}}
+    {{--</li>--}}
 
 
 
-            {{--</ul>--}}
 
-        {{--</div>--}}
+
+    {{--</ul>--}}
+
+    {{--</div>--}}
 
     {{--</div>--}}
 
 </div>
-
-
-
-
 
 
 <!-- Page Content -->
@@ -472,9 +478,6 @@
 
 
 @yield('footer')
-
-
-
 
 
 </body>
