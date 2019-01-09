@@ -47,7 +47,10 @@ class AdminUsersController extends Controller
         //
         $input = $request->all();
         $input['password'] = bcrypt($request->password);
-        User::create($input);
+        $user = User::create($input);
+
+        $user->roles()->sync($request->get('roles'));
+
 
         Session::flash('added_user','Utilizatorul a fost adăugat');
 
@@ -102,6 +105,7 @@ class AdminUsersController extends Controller
 
 
         $user->update($input);
+        $user->roles()->sync($request->get('roles'));
 
         Session::flash('edited_user','Utilizatorul a fost modificat');
 

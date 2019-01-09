@@ -19,7 +19,7 @@
 
     <div class="form-goup">
         {!! Form::label('role_id', 'Rol:') !!}
-        {!! Form::select('role_id', ['' => 'Alegeți opțiunea'] + $roles, null, ['class'=>'form-control']) !!}
+        {!! Form::select('roles[]', ['' => 'Alegeți opțiunea'] + $roles, $user->roles->pluck('id')->toArray(), ['class'=>'form-control', 'multiple' => 'multiple']) !!}
     </div>
 
     <div class="form-goup">

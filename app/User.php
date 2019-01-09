@@ -24,19 +24,24 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role(){
+    public function roles(){
 
-        return $this->belongsTo('App\Role');
+        return $this->belongsToMany('App\Role');
 
     }
 
     public function isAdmin(){
 
-        if($this->role->name == "administrator" && $this->is_active == 1){
+        foreach ($this->roles as $role){
 
-            return true;
+            if($role->name == "administrator" && $this->is_active == 1){
+
+                return true;
+
+            }
 
         }
+
 
         return false;
 
@@ -44,10 +49,13 @@ class User extends Authenticatable
 
     public function isOperator(){
 
-        if($this->role->name == "operator" && $this->is_active == 1){
+        foreach ($this->roles as $role) {
 
-            return true;
+            if ($role->name == "operator" && $this->is_active == 1) {
 
+                return true;
+
+            }
         }
 
         return false;

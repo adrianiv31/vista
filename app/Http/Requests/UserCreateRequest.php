@@ -27,7 +27,7 @@ class UserCreateRequest extends FormRequest
             //
             'name' => 'required',
             'email' => 'required',
-            'role_id' => 'required',
+            'roles' => 'required',
             'is_active' => 'required',
             'password' => 'required',
 

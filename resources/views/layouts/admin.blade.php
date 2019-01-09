@@ -212,7 +212,7 @@
                         </li>
 
                     @endif
-
+                    @if(Auth::user()->isAdmin() || Auth::user()->isOperator())
                     <li>
                         <a href="#"><i class="fa fa-wrench fa-fw"></i> OPERAȚIONAL<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
@@ -252,6 +252,8 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+                    @endif
+
                     @if(Auth::user()->isAdmin())
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> RAPORTARE<span class="fa arrow"></span></a>
