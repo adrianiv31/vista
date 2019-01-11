@@ -2481,13 +2481,13 @@ $(function() {
  * Created by edwin on 11/7/15.
  */
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-    $('#selectAllBoxes').click(function(event){
+    $('#selectAllBoxes').click(function (event) {
 
-        if(this.checked) {
+        if (this.checked) {
 
-            $('.checkBoxes').each(function(){
+            $('.checkBoxes').each(function () {
 
                 this.checked = true;
 
@@ -2496,7 +2496,7 @@ $(document).ready(function(){
         } else {
 
 
-            $('.checkBoxes').each(function(){
+            $('.checkBoxes').each(function () {
 
                 this.checked = false;
 
@@ -2508,9 +2508,6 @@ $(document).ready(function(){
     });
 
 
-
-
-
     /**************** User Profile **********************/
 
 
@@ -2520,21 +2517,19 @@ $(document).ready(function(){
     panels.hide();
 
     //Click dropdown
-    panelsButton.click(function() {
+    panelsButton.click(function () {
         //get data-for attribute
         var dataFor = $(this).attr('data-for');
         var idFor = $(dataFor);
 
         //current button
         var currentButton = $(this);
-        idFor.slideToggle(400, function() {
+        idFor.slideToggle(400, function () {
             //Completed slidetoggle
-            if(idFor.is(':visible'))
-            {
+            if (idFor.is(':visible')) {
                 currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
             }
-            else
-            {
+            else {
                 currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
             }
         })
@@ -2549,8 +2544,41 @@ $(document).ready(function(){
     //});
 
 
+    $("#frm").submit(function (e) {
+        e.preventDefault();
+    });
+    $('#siguranta').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);// Button that triggered the modal
+        var recipient = button.data('userid');// Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this);
+        modal.find('.modal-footer #sterge').click(function () {
+            $("#frm").attr('action', recipient);
+            document.getElementById("frm").submit();
+        });
+    });
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-
-
+    $("#cauta").keypress(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/cautaUsers',
+            data: {
+                "_token": "<?php echo csrf_token() ?>",
+                "ss": "adrian"
+            },
+            success: function (data) {
+                //$("#msg").html(data.msg);
+                alert(data.msg);
+            }
+        });
+    });
 });
+
+

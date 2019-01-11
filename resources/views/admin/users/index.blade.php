@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 
+@section('header')
+
+    <meta name="csrf-token" content="{{csrf_token()}}">
+
+@endsection
 
 @section('content')
 
@@ -20,8 +25,20 @@
     @endif
     <h1>Utilizatori</h1>
 
-    <button class="btn-info" onclick="location.href='{{route('admin.users.create')}}'">Adaugă utilizator</button>
+    <div class="row">
+        <button class="btn-info" onclick="location.href='{{route('admin.users.create')}}'">Adaugă utilizator</button>
+    </div>
+    {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store']) !!}
 
+    <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="form-goup col-sm-4 has-search">
+            <span class="fa fa-search form-control-feedback"></span>
+            {!! Form::text('cauta', null, ['class'=>'form-control', 'placeholder'=>'Caută...', 'id'=>'cauta']) !!}
+        </div>
+
+    </div>
+    {!! Form::close() !!}
     <table class="table table-hover">
         <thead>
         <tr>
@@ -38,9 +55,11 @@
 
         </tr>
         </thead>
-        <tbody>
+        <tbody id="table-content">
 
         @if($users)
+
+            @php $i=1; @endphp
 
             @foreach($users as $user)
 
@@ -52,10 +71,10 @@
                     </th>
                     <th>
                         <button class="btn-danger" data-toggle="modal" data-target="#siguranta"
-                                data-userid="{{route('admin.users.destroy',$user->id)}}">Sterge
+                                data-userid="{{route('admin.users.destroy',$user->id)}}" data-nume="{{strtoupper($user->name)}}">Sterge
                         </button>
                     </th>
-                    <th>1</th>
+                    <th>{{$i}}</th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
@@ -69,7 +88,7 @@
                     <td>{{$user->updated_at->diffForHumans()}}</td>
 
                 </tr>
-
+                @php $i++; @endphp
             @endforeach
         @endif
 
@@ -109,20 +128,43 @@
 @section('footer')
     <script>
         $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             $("#frm").submit(function (e) {
                 e.preventDefault();
             });
             $('#siguranta').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);// Button that triggered the modal
-                var recipient = button.data('userid');// Extract info from data-* attributes
+                var recipient = button.data('userid');
+                var nume = button.data('nume');// Extract info from data-* attributes
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
                 var modal = $(this);
+                modal.find('.modal-body p').html('SIGUR DORIȚI SĂ ȘTERGEȚI UTILIZATORUL <span class="text-danger" style="font-weight: 900;">'+nume+'</span>');
                 modal.find('.modal-footer #sterge').click(function () {
                     $("#frm").attr('action', recipient);
                     document.getElementById("frm").submit();
                 });
             });
+
+
+
+            $("#cauta").keyup(function(){
+                var text = $(this).val();
+
+                $.get('/cautaUsers?ss='+text, function (data) {
+
+                    $("#table-content").empty();
+                    $("#table-content").html(data);
+
+                });
+
+            });
+
         });
     </script>
 @endsection

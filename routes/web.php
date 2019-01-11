@@ -35,4 +35,12 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
+    Route::get('/cautaUsers','AjaxController@cautaUsers');
+
+});
+
+Route::group(['middleware' => 'operator'], function(){
+
+
+
 });
