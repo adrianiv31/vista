@@ -131,6 +131,10 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> NOMENCLATOR<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
+                                    <a href="{{route('admin.producers.index')}}">PRODUCĂTORI</a>
+                                </li>
+
+                                <li>
                                     <a href="/posts">PRODUSE</a>
                                 </li>
 
@@ -186,10 +190,6 @@
 
                                 <li>
                                     <a href="/categories/create">CALCUL DISCOUNT</a>
-                                </li>
-
-                                <li>
-                                    <a href="/categories/create">Calcul Discount</a>
                                 </li>
 
                                 <li>

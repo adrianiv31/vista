@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Producer;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -52,6 +53,49 @@ class AjaxController extends Controller
                     </td>
 
                     <td>$activ</td>
+                    <td>$created</td>
+                    <td>$updated</td>
+
+                </tr>";
+            $i++;
+        }
+
+        return Response::json($data);
+    }
+
+    public function cautaProducers()
+    {
+        $ss = Input::get('ss');
+
+
+        $producers = Producer::where('name', 'like', "%{$ss}%")->get();
+
+        $data = "";
+
+        $i = 1;
+        foreach ($producers as $producer) {
+            $routeEdit = route('admin.producers.edit', $producer->id);
+            $routeDel = route('admin.producers.destroy', $producer->id);
+
+            $created = $producer->created_at->diffForHumans();
+            $updated = $producer->updated_at->diffForHumans();
+
+
+
+            $data .= "<tr>
+                    <th scope=\"row\">
+                        <button class=\"btn-success\" onclick=\"location.href='$routeEdit'\">
+            Modifică
+                        </button>
+                    </th>
+                    <th>
+                        <button class=\"btn-danger\" data-toggle=\"modal\" data-target=\"#siguranta\"
+                                data-userid=\"$routeDel\" data-nume=\"" . strtoupper($producer->name) . "\">Sterge
+                        </button>
+                    </th>
+                    <th>$i</th>
+                    <td>$producer->name</td>
+                    
                     <td>$created</td>
                     <td>$updated</td>
 

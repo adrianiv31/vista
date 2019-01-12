@@ -35,7 +35,19 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
+    Route::resource('admin/producers','AdminProducersController', ['names'=>[
+
+        'index'=>'admin.producers.index',
+        'create'=>'admin.producers.create',
+        'store'=>'admin.producers.store',
+        'edit'=>'admin.producers.edit',
+        'destroy'=>'admin.producers.destroy',
+
+    ]]);
+
+    //Ajax
     Route::get('/cautaUsers','AjaxController@cautaUsers');
+    Route::get('/cautaProducers','AjaxController@cautaProducers');
 
 });
 
