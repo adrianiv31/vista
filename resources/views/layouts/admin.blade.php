@@ -135,7 +135,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="/posts">PRODUSE</a>
+                                    <a href="{{route('admin.products.index')}}">PRODUSE</a>
                                 </li>
 
                                 <li>
@@ -151,7 +151,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="/posts/create">CATEGORII</a>
+                                    <a href="{{route('admin.categories.index')}}">CATEGORII DE PRODUSE</a>
                                 </li>
 
 

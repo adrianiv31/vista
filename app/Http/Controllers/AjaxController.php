@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Producer;
+use App\Products;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -81,7 +83,6 @@ class AjaxController extends Controller
             $updated = $producer->updated_at->diffForHumans();
 
 
-
             $data .= "<tr>
                     <th scope=\"row\">
                         <button class=\"btn-success\" onclick=\"location.href='$routeEdit'\">
@@ -99,6 +100,91 @@ class AjaxController extends Controller
                     <td>$created</td>
                     <td>$updated</td>
 
+                </tr>";
+            $i++;
+        }
+
+        return Response::json($data);
+    }
+
+    public function cautaCategories()
+    {
+        $ss = Input::get('ss');
+
+
+        $categories = Category::where('name', 'like', "%{$ss}%")->get();
+
+        $data = "";
+
+        $i = 1;
+        foreach ($categories as $category) {
+            $routeEdit = route('admin.producers.edit', $category->id);
+            $routeDel = route('admin.producers.destroy', $category->id);
+
+            $created = $category->created_at->diffForHumans();
+            $updated = $category->updated_at->diffForHumans();
+
+
+            $data .= "<tr>
+                    <th scope=\"row\">
+                        <button class=\"btn-success\" onclick=\"location.href='$routeEdit'\">
+            Modifică
+                        </button>
+                    </th>
+                    <th>
+                        <button class=\"btn-danger\" data-toggle=\"modal\" data-target=\"#siguranta\"
+                                data-userid=\"$routeDel\" data-nume=\"" . strtoupper($category->name) . "\">Sterge
+                        </button>
+                    </th>
+                    <th>$i</th>
+                    <td>$category->name</td>
+                    
+                    <td>$created</td>
+                    <td>$updated</td>
+
+                </tr>";
+            $i++;
+        }
+
+        return Response::json($data);
+    }
+
+    public function cautaProducts()
+    {
+        $ss = Input::get('ss');
+
+
+        $products = Products::where('name', 'like', "%{$ss}%")
+            ->orWhere('cod_produs', 'like', "%{$ss}%")->get();
+        $data = "";
+
+        $i = 1;
+        foreach ($products as $product) {
+            $routeEdit = route('admin.products.edit', $product->id);
+            $routeDel = route('admin.products.destroy', $product->id);
+
+            $created = $product->created_at->diffForHumans();
+            $updated = $product->updated_at->diffForHumans();
+            $producer = $product->producer->name;
+
+
+            $data .= "<tr>
+                    <th scope=\"row\">
+                        <button class=\"btn-success\" onclick=\"location.href='$routeEdit'\">
+            Modifică
+                        </button>
+                    </th>
+                    <th>
+                        <button class=\"btn-danger\" data-toggle=\"modal\" data-target=\"#siguranta\"
+                                data-userid=\"$routeDel\" data-nume=\"" . strtoupper($product->name) . "\">Sterge
+                        </button>
+                    </th>
+                    <th>$i</th>
+                    <td>$product->cod_produs</td>
+                    <td>$product->name</td>
+                    <td>$producer</td>
+                    <td>$created</td>
+                    <td>$updated</td>
                 </tr>";
             $i++;
         }

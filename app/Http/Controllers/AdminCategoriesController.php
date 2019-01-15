@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProducerCreateRequest;
-use App\Producer;
+use App\Category;
+use App\Http\Requests\CategoryCreateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class AdminProducersController extends Controller
+class AdminCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class AdminProducersController extends Controller
     public function index()
     {
         //
-        $producers = Producer::all();
+        $categories = Category::all();
 
-        return view('admin.producers.index', compact('producers'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -30,7 +30,7 @@ class AdminProducersController extends Controller
     public function create()
     {
         //
-        return view('admin.producers.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -39,17 +39,16 @@ class AdminProducersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProducerCreateRequest $request)
+    public function store(CategoryCreateRequest $request)
     {
         //
         $input = $request->all();
 
-        $producer = Producer::create($input);
+        $category = Category::create($input);
 
-        Session::flash('added_producer','Producătorul a fost adăugat');
+        Session::flash('added_category','Categoria a fost adăugată');
 
-        return redirect(route('admin.producers.index'));
-
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -72,9 +71,9 @@ class AdminProducersController extends Controller
     public function edit($id)
     {
         //
-        $producer = Producer::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        return view('admin.producers.edit', compact('producer'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -84,21 +83,21 @@ class AdminProducersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProducerCreateRequest $request, $id)
+    public function update(CategoryCreateRequest $request, $id)
     {
         //
-        $producer = Producer::findOrFail($id);
+        $category = Category::findOrFail($id);
 
 
         $input = $request->all();
 
 
-        $producer->update($input);
+        $category->update($input);
 
 
-        Session::flash('edited_producer','Producătorul a fost modificat');
+        Session::flash('edited_category','Categoria a fost modificată');
 
-        return redirect(route('admin.producers.index'));
+        return redirect(route('admin.categories.index'));
     }
 
     /**
@@ -110,10 +109,10 @@ class AdminProducersController extends Controller
     public function destroy($id)
     {
         //
-        Producer::findOrFail($id)->delete();
+        Category::findOrFail($id)->delete();
 
-        Session::flash('deleted_producer','Producătorul a fost șters');
+        Session::flash('deleted_category','Categoria a fost ștersă');
 
-        return redirect(route('admin.producers.index'));
+        return redirect(route('admin.categories.index'));
     }
 }

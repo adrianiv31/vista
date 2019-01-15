@@ -45,9 +45,41 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
+    Route::resource('admin/categories','AdminCategoriesController', ['names'=>[
+
+        'index'=>'admin.categories.index',
+        'create'=>'admin.categories.create',
+        'store'=>'admin.categories.store',
+        'edit'=>'admin.categories.edit',
+        'destroy'=>'admin.categories.destroy',
+
+    ]]);
+
+    Route::resource('admin/products','AdminProductsController', ['names'=>[
+
+        'index'=>'admin.products.index',
+        'create'=>'admin.products.create',
+        'store'=>'admin.products.store',
+        'edit'=>'admin.products.edit',
+        'destroy'=>'admin.products.destroy',
+
+    ]]);
+
+    Route::resource('admin/productdocuments','AdminProductDocumentsController', ['names'=>[
+
+        'index'=>'admin.productdocuments.index',
+        'create'=>'admin.productdocuments.create',
+        'store'=>'admin.productdocuments.store',
+        'edit'=>'admin.productdocuments.edit',
+        'destroy'=>'admin.productdocuments.destroy',
+
+    ]]);
+
     //Ajax
     Route::get('/cautaUsers','AjaxController@cautaUsers');
     Route::get('/cautaProducers','AjaxController@cautaProducers');
+    Route::get('/cautaCategories','AjaxController@cautaCategories');
+    Route::get('/cautaProducts','AjaxController@cautaProducts');
 
 });
 

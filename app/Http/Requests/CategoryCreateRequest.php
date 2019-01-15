@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProducerCreateRequest extends FormRequest
+class CategoryCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class ProducerCreateRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|unique:producers'
+            'name' => 'required|unique:categories'
         ];
     }
 }
