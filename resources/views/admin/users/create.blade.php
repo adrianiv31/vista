@@ -7,34 +7,34 @@
 
         {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store']) !!}
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('name', 'Nume:') !!}
             {!! Form::text('name', null, ['class'=>'form-control']) !!}
         </div>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('email', 'Email:') !!}
             {!! Form::email('email', null, ['class'=>'form-control']) !!}
         </div>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('role_id', 'Rol:') !!}
             {!! Form::select('roles[]', ['' => 'Alegeți opțiunea'] + $roles, null, ['class'=>'form-control', 'multiple' => 'multiple']) !!}
         </div>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('is_active', 'Status:') !!}
             {!! Form::select('is_active', array(1 => 'Activ', 0 => 'Dezactivat'), 0, ['class'=>'form-control']) !!}
         </div>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('password', 'Parola:') !!}
             {!! Form::password('password', ['class'=>'form-control']) !!}
         </div>
 
         <hr>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::submit('Creare utilizator', ['class'=>'btn btn-primary col-sm-3']) !!}
         </div>
 

@@ -143,7 +143,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="/posts/create">FURNIZORI</a>
+                                    <a href="{{route('admin.suppliers.index')}}">FURNIZORI</a>
                                 </li>
 
                                 <li>

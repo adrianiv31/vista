@@ -8,7 +8,7 @@
         {!! Form::model($category,['method'=>'PATCH', 'action'=>['AdminCategoriesController@update', $category->id]]) !!}
 
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('name', 'Denumire:') !!}
             {!! Form::text('name', null, ['class'=>'form-control']) !!}
         </div>
@@ -16,7 +16,7 @@
 
         <hr>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::submit('Modificare categorie', ['class'=>'btn btn-primary col-sm-3']) !!}
         </div>
 

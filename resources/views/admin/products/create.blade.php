@@ -8,54 +8,54 @@
 
             {!! Form::open(['method'=>'POST', 'action'=>'AdminProductsController@store','files'=>true]) !!}
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('producer_id', 'Producător:') !!}
                 {!! Form::select('producer_id', ['' => 'Alegeți opțiunea'] + $producers, null, ['class'=>'form-control','id'=>'prod']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('specie', 'Specie:') !!}
                 {!! Form::text('specie', null, ['class'=>'form-control','id'=>'spc']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('insamantare', 'Perioada de însămânțare:') !!}
-                {!! Form::select('insamantare', array('' => 'Alegeți opțiunea','PRIMAVARA' => 'PRIMAVARA','VARA' => 'VARA','TOAMNA' => 'TOAMNA','IARNA' => 'IARNA'), null, ['class'=>'form-control','id'=>'per']) !!}
+                {!! Form::select('insamantare', array('' => 'Alegeți opțiunea','PRIMAVARA' => 'PRIMAVARA','TOAMNA' => 'TOAMNA'), null, ['class'=>'form-control','id'=>'per']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('name', 'Denumire:') !!}
                 {!! Form::text('name', null, ['class'=>'form-control','id'=>'nume']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('categorie_bio', 'Categorie biologică:') !!}
                 {!! Form::text('categorie_bio', null, ['class'=>'form-control','id'=>'bio']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('cod_produs', 'Cod produs:') !!}
                 {!! Form::text('cod_produs', null, ['class'=>'form-control','readonly'=>'readonly','id'=>'cod']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('category_id', 'Categorie:') !!}
                 {!! Form::select('category_id', ['' => 'Alegeți opțiunea'] + $categories, null, ['class'=>'form-control']) !!}
             </div>
 
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('descriere', 'Descriere:') !!}
                 {!! Form::text('descriere', null, ['class'=>'form-control']) !!}
             </div>
 
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('um', 'Unitatea de măsură:') !!}
                 {!! Form::text('um', null, ['class'=>'form-control']) !!}
             </div>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::label('doc_id', 'FISA TEHNICA DE PRODUS / SECURITATE:') !!}
                 {!! Form::file('doc_id', null, ['class'=>'form-control']) !!}
             </div>
@@ -63,7 +63,7 @@
 
             <hr>
 
-            <div class="form-goup">
+            <div class="form-group">
                 {!! Form::submit('Creare produs', ['class'=>'btn btn-primary col-sm-3']) !!}
             </div>
 

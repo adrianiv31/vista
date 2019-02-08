@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\ProductsCreateRequest;
 use App\Producer;
 use App\ProductDocuments;
 use App\Products;
@@ -43,7 +44,7 @@ class AdminProductsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductsCreateRequest $request)
     {
         //
         $input = $request->all();

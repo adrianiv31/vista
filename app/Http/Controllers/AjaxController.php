@@ -191,4 +191,46 @@ class AjaxController extends Controller
 
         return Response::json($data);
     }
+    public function cautaSupplier()
+    {
+        $ss = Input::get('ss');
+
+
+        $products = Products::where('name', 'like', "%{$ss}%")
+            ->orWhere('cod_produs', 'like', "%{$ss}%")->get();
+        $data = "";
+
+        $i = 1;
+        foreach ($products as $product) {
+            $routeEdit = route('admin.products.edit', $product->id);
+            $routeDel = route('admin.products.destroy', $product->id);
+
+            $created = $product->created_at->diffForHumans();
+            $updated = $product->updated_at->diffForHumans();
+            $producer = $product->producer->name;
+
+
+            $data .= "<tr>
+                    <th scope=\"row\">
+                        <button class=\"btn-success\" onclick=\"location.href='$routeEdit'\">
+            Modifică
+                        </button>
+                    </th>
+                    <th>
+                        <button class=\"btn-danger\" data-toggle=\"modal\" data-target=\"#siguranta\"
+                                data-userid=\"$routeDel\" data-nume=\"" . strtoupper($product->name) . "\">Sterge
+                        </button>
+                    </th>
+                    <th>$i</th>
+                    <td>$product->cod_produs</td>
+                    <td>$product->name</td>
+                    <td>$producer</td>
+                    <td>$created</td>
+                    <td>$updated</td>
+                </tr>";
+            $i++;
+        }
+
+        return Response::json($data);
+    }
 }

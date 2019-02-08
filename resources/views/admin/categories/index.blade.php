@@ -32,7 +32,7 @@
 
     <div class="row">
         <div class="col-sm-8"></div>
-        <div class="form-goup col-sm-4 has-search">
+        <div class="form-group col-sm-4 has-search">
             <span class="fa fa-search form-control-feedback"></span>
             {!! Form::text('cauta', null, ['class'=>'form-control', 'placeholder'=>'Caută...', 'id'=>'cauta']) !!}
         </div>
@@ -102,7 +102,7 @@
                 <span class="col-sm-8"></span>
                 {!! Form::open(['method'=>'DELETE', 'action'=>['AdminCategoriesController@destroy', -1],'id'=>'frm']) !!}
 
-                <div class="form-goup">
+                <div class="form-group">
                     {!! Form::submit('DA', ['class'=>'btn btn-danger col-sm-2','id'=>'sterge']) !!}
                 </div>
 

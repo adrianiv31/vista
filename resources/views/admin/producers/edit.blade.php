@@ -8,7 +8,7 @@
         {!! Form::model($producer,['method'=>'PATCH', 'action'=>['AdminProducersController@update', $producer->id]]) !!}
 
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::label('name', 'Denumire:') !!}
             {!! Form::text('name', null, ['class'=>'form-control']) !!}
         </div>
@@ -16,7 +16,7 @@
 
         <hr>
 
-        <div class="form-goup">
+        <div class="form-group">
             {!! Form::submit('Modificare producător', ['class'=>'btn btn-primary col-sm-3']) !!}
         </div>
 

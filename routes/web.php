@@ -75,11 +75,22 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
+    Route::resource('admin/suppliers','AdminSuppliersController', ['names'=>[
+
+        'index'=>'admin.suppliers.index',
+        'create'=>'admin.suppliers.create',
+        'store'=>'admin.suppliers.store',
+        'edit'=>'admin.suppliers.edit',
+        'destroy'=>'admin.suppliers.destroy',
+
+    ]]);
+
     //Ajax
     Route::get('/cautaUsers','AjaxController@cautaUsers');
     Route::get('/cautaProducers','AjaxController@cautaProducers');
     Route::get('/cautaCategories','AjaxController@cautaCategories');
     Route::get('/cautaProducts','AjaxController@cautaProducts');
+    Route::get('/cautaSupplier','AjaxController@cautaSupplier');
 
 });
 
