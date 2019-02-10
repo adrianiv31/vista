@@ -55,12 +55,11 @@
                 {!! Form::text('um', null, ['class'=>'form-control']) !!}
             </div>
 
-            <div class="form-group">
-                {{--{!! Form::label('doc_id', 'FISA TEHNICA DE PRODUS / SECURITATE:') !!}--}}
-                <div id="upload-btn-wrapper">
+            <div class="form-group" id="upload-btn-wrapper">
                     <button class="btn btn-warning" type="button">Încarcă fișă tehnică produs / securitate...</button>
-                    {!! Form::file('doc_id', null, ['class'=>'form-control']) !!}
-                </div>
+                    {{--{!! Form::label('doc_id', 'FISA TEHNICA DE PRODUS / SECURITATE:') !!}--}}
+                    {!! Form::file('doc_id', ['class'=>'form-control docid']) !!}
+
             </div>
 
 
@@ -125,17 +124,18 @@
             });
 
 
-            $('#doc_id').change(function (event) {
+            $('.docid').change(function (event) {
+
 
                 var file = URL.createObjectURL(event.target.files[0]);
-                filename = $("#doc_id").val();
+                filename = $(".docid").val();
                 $('#doc').html('<tr><th scope="col">'+filename+'</th><th scope="col"><button class="btn-danger" id="stergedoc">Sterge</button></th></tr>');
 
                 $('#doc-pdf').append('<embed src="'+file+'" width="500" height="700">');
             });
 
             $("#doc").on('click','#stergedoc', function(){
-                var el = $('#doc_id');
+                var el = $('.docid');
                 el.wrap("<form></form>").closest('form').get(0).reset();
                 el.unwrap();
                 $("#doc").html("");
