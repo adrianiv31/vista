@@ -155,7 +155,7 @@ class AdminProductsController extends Controller
         $product->delete();
 
 
-        Session::flash('deleted_product', 'Produsul a fost sters');
+        Session::flash('deleted_product', 'Produsul a fost șters');
 
         return redirect(route('admin.products.index'));
     }

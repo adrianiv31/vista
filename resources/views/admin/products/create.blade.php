@@ -56,8 +56,11 @@
             </div>
 
             <div class="form-group">
-                {!! Form::label('doc_id', 'FISA TEHNICA DE PRODUS / SECURITATE:') !!}
-                {!! Form::file('doc_id', null, ['class'=>'form-control']) !!}
+                {{--{!! Form::label('doc_id', 'FISA TEHNICA DE PRODUS / SECURITATE:') !!}--}}
+                <div id="upload-btn-wrapper">
+                    <button class="btn btn-warning" type="button">Încarcă fișă tehnică produs / securitate...</button>
+                    {!! Form::file('doc_id', null, ['class'=>'form-control']) !!}
+                </div>
             </div>
 
 

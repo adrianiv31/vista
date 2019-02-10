@@ -91,6 +91,9 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('/cautaCategories','AjaxController@cautaCategories');
     Route::get('/cautaProducts','AjaxController@cautaProducts');
     Route::get('/cautaSupplier','AjaxController@cautaSupplier');
+    Route::post('/addSupplierDoc','AjaxController@addSupplierDoc');
+    Route::post('/updSupplierDoc','AjaxController@updSupplierDoc');
+    Route::get('/delSupplierDoc','AjaxController@delSupplierDoc');
 
 });
 

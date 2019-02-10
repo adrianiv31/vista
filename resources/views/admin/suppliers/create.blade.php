@@ -60,8 +60,11 @@
 
             <div id="docs">
                 <div class="form-group">
-                    {!! Form::label('doc_id', 'Contract fizic:') !!}
-                    {!! Form::file('doc_id', ['class'=>'form-control docid', 'multiple']) !!}
+                    {{--{!! Form::label('doc_id', 'Contract fizic:') !!}--}}
+                    <div id="upload-btn-wrapper">
+                        <button class="btn btn-warning" type="button">Încarcă contracte...</button>
+                        {!! Form::file('doc_id', ['class'=>'form-control docid', 'multiple']) !!}
+                    </div>
                 </div>
             </div>
 
@@ -111,16 +114,32 @@
     <script>
         $(document).ready(function () {
 
-            var nr_docs = 1;
+
             var files = [];
+
+            var token = Math.random().toString(36).slice(-8);
+
+
+            $('<input>').attr({
+                type: 'hidden',
+                id: 'token',
+                name: 'token',
+                value: token
+            }).appendTo('form');
+
+//            $.ajaxSetup({
+//                headers: {
+//                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                }
+//            });
 
             $('#docs').on('change', '.docid', function () {//.change(function (event) {//.on('change', '.document', function(){//.change(function (event) {
 
 
-                $.merge(files,$('.docid')[0].files);
+                files = $('.docid')[0].files;
 
-                $('#doc').html("");
-                $('#doc-pdf').html("");
+//                $('#doc').html("");
+//                $('#doc-pdf').html("");
 
                 for (var i = 0, f; f = files[i]; i++) {
 
@@ -128,7 +147,7 @@
                     var reader = new FileReader();
 
                     // Closure to capture the file information.
-                    reader.onload = (function (theFile,i) {
+                    reader.onload = (function (theFile, i) {
                         return function (e) {
                             // Render thumbnail.
 //                            var span = document.createElement('span');
@@ -136,91 +155,139 @@
 //                                '" title="', escape(theFile.name), '"/>'].join('');
 //                            document.getElementById('list').insertBefore(span, null);
 
-                            $('#doc').append('<tr><th scope="col">' + theFile.name + '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' + i + '">Sterge</button></th></tr>');
+                            //$('#doc').append('<tr><th scope="col">' + theFile.name + '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' + i + '">Sterge</button></th></tr>');
 
-                            $('#doc-pdf').html('<embed src="' + e.target.result + '" width="500" height="700">');
+                            //$('#doc-pdf').html('<embed src="' + e.target.result + '" width="500" height="700">');
+
+                            var token = $("#token").val();
+
+                            var _token = $("input[name='_token']").val();
+
+                            var data = new FormData();
+
+                            data.append('_token', _token);
+                            data.append('doc_id', theFile);
+                            data.append('token', token);
+
+                            $.ajax({
+                                url: '/addSupplierDoc',
+                                data: data,
+                                cache: false,
+                                contentType: false,
+                                processData: false,
+                                type: 'POST',
+                                success: function (data) {
+                                    $('#doc').append(data.tr);
+                                    $('#doc-pdf').html(data.embed);
+                                },
+                                error: function (data) {
+                                    console.log(data);
+                                }
+                            });
+
+
                         };
-                    })(f,i);
+                    })(f, i);
 
                     // Read in the image file as a data URL.
                     reader.readAsDataURL(f);
-                    nr_docs++;
 
 
 //
 
                 }
 
-
-//                nr_docs++;
+                var el = $('#doc_id');
+                el.wrap("<form></form>").closest('form').get(0).reset();
+                el.unwrap();
+                $("#doc").html("");
+                $("#doc-pdf").html("");
 //
-//                var html = '<div class="form-group"><label for="doc_id' + nr_docs + '">Contract fizic ' + nr_docs + ':</label><input name="doc_id' + nr_docs + '" type="file" id="doc_id' + nr_docs + '" class="form-control docid"></div>';
-//                $('#docs').append(html);
-//
-//
-//                var file = URL.createObjectURL(event.target.files[0]);
-//                filename = $(this).val();
-//
-//                $('#doc').append('<tr><th scope="col">' + filename + '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' + (nr_docs - 1) + '">Sterge</button></th></tr>');
-//
-//                $('#doc-pdf').html('<embed src="' + file + '" width="500" height="700">');
             });
 
             $("#doc").on('click', '.stergedoc', function (e) {
 
-                e.preventDefault();
-                var eldata = $(this);
-                var id = eldata.data('id');
+                    e.preventDefault();
+                    var eldata = $(this);
+                    var id = eldata.data('id');
+
+                    $('#tr' + id).remove();
+
+                    var embd = $('#embd');
+
+                    if (embd.data('id') == id) {
+
+                        if ($("#doc").children().length > 0) {
+
+                            var fis = $("#doc").children().first().children().first().html();
+                            $('#doc-pdf').html('<embed src="/documente/furnizori/' + fis + '" width="500" height="700">');
+
+                        }
 
 
-                for (var i = 0; i < files.length; i++) {
-
-                    if (i==id) {
-                        files.splice(i, 1);
-                        break;
                     }
-                }
+                    if ($("#doc").children().length == 0) {
 
-                $('#doc').html("");
-                $('#doc-pdf').html("");
+                        $('#doc-pdf').html("");
 
-                nr_docs = 1;
-                for (var i = 0, f; f = files[i]; i++) {
+                    }
 
 
-                    var reader = new FileReader();
+                    $.get('/delSupplierDoc?id=' + id, function (data) {
 
-                    // Closure to capture the file information.
-                    reader.onload = (function (theFile,i) {
-                        return function (e) {
-                            // Render thumbnail.
-//                            var span = document.createElement('span');
-//                            span.innerHTML = ['<img class="thumb" src="', e.target.result,
-//                                '" title="', escape(theFile.name), '"/>'].join('');
-//                            document.getElementById('list').insertBefore(span, null);
 
-                            $('#doc').append('<tr><th scope="col">' + theFile.name + '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' + i + '">Sterge</button></th></tr>');
+                    });
 
-                            $('#doc-pdf').html('<embed src="' + e.target.result + '" width="500" height="700">');
-                        };
-                    })(f,i);
-
-                    // Read in the image file as a data URL.
-                    reader.readAsDataURL(f);
-                    nr_docs++;
-                }
-
-                $('#docid').val(files);
-//                var eldata = $(this);
 //
-//                var el = $('#doc_id' + eldata.data('id'));
-//                el.wrap("<form></form>").closest('form').get(0).reset();
-//                el.unwrap();
-//                $("#doc").html("");
-//                $("#doc-pdf").html("");
+//
+//                for (var i = 0; i < files.length; i++) {
+//
+//                    if (i==id) {
+//                        files.splice(i, 1);
+//                        break;
+//                    }
+//                }
+//
+//                $('#doc').html("");
+//                $('#doc-pdf').html("");
+//
+//                nr_docs = 1;
+//                for (var i = 0, f; f = files[i]; i++) {
+//
+//
+//                    var reader = new FileReader();
+//
+//                    // Closure to capture the file information.
+//                    reader.onload = (function (theFile,i) {
+//                        return function (e) {
+//                            // Render thumbnail.
+////                            var span = document.createElement('span');
+////                            span.innerHTML = ['<img class="thumb" src="', e.target.result,
+////                                '" title="', escape(theFile.name), '"/>'].join('');
+////                            document.getElementById('list').insertBefore(span, null);
+//
+//                            $('#doc').append('<tr><th scope="col">' + theFile.name + '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' + i + '">Sterge</button></th></tr>');
+//
+//                            $('#doc-pdf').html('<embed src="' + e.target.result + '" width="500" height="700">');
+//                        };
+//                    })(f,i);
+//
+//                    // Read in the image file as a data URL.
+//                    reader.readAsDataURL(f);
+//                    nr_docs++;
+//                }
+//
+//
+////                var eldata = $(this);
+////
+////                var el = $('#doc_id' + eldata.data('id'));
+////                el.wrap("<form></form>").closest('form').get(0).reset();
+////                el.unwrap();
+////                $("#doc").html("");
+////                $("#doc-pdf").html("");
 
                 }
-                );
+            );
         });
 
 

@@ -8,19 +8,19 @@
 
 @section('content')
 
-    @if(Session::has('added_product'))
+    @if(Session::has('added_supplier'))
 
-        <p class="bg-danger">{{session('added_product')}}</p>
-
-    @endif
-    @if(Session::has('edited_product'))
-
-        <p class="bg-danger">{{session('edited_product')}}</p>
+        <p class="bg-danger">{{session('added_supplier')}}</p>
 
     @endif
-    @if(Session::has('deleted_product'))
+    @if(Session::has('edited_supplier'))
 
-        <p class="bg-danger">{{session('deleted_product')}}</p>
+        <p class="bg-danger">{{session('edited_supplier')}}</p>
+
+    @endif
+    @if(Session::has('deleted_supplier'))
+
+        <p class="bg-danger">{{session('deleted_supplier')}}</p>
 
     @endif
     <h1>Furnizori</h1>
@@ -72,13 +72,13 @@
 
                 <tr>
                     <th scope="row">
-                        <button class="btn-success" onclick="location.href='{{route('admin.products.edit',$supplier->id)}}'">
+                        <button class="btn-success" onclick="location.href='{{route('admin.suppliers.edit',$supplier->id)}}'">
                             Modifică
                         </button>
                     </th>
                     <th>
                         <button class="btn-danger" data-toggle="modal" data-target="#siguranta"
-                                data-supplierid="{{route('admin.products.destroy',$supplier->id)}}" data-nume="{{strtoupper($supplier->name)}}">Sterge
+                                data-supplierid="{{route('admin.suppliers.destroy',$supplier->id)}}" data-nume="{{strtoupper($supplier->name)}}">Sterge
                         </button>
                     </th>
                     <th>{{$i}}</th>

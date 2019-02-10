@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Producer;
 use App\Products;
+use App\SupplierDocuments;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -191,6 +192,7 @@ class AjaxController extends Controller
 
         return Response::json($data);
     }
+
     public function cautaSupplier()
     {
         $ss = Input::get('ss');
@@ -232,5 +234,68 @@ class AjaxController extends Controller
         }
 
         return Response::json($data);
+    }
+
+    public function addSupplierDoc(Request $request)
+    {
+
+
+
+        $token = $request->token;
+
+
+        $file = $request->file('doc_id');
+
+        $name = time() . '-' . $file->getClientOriginalName();
+
+        $file->move('documente/furnizori', $name);
+
+        $sd = SupplierDocuments::create(['doc_id'=>$name,'token'=>$token]);
+
+        $data = NULL;
+
+        $data = array('tr' => '<tr id="tr' . $sd->id . '"><th scope="col">' . $sd->doc_id . '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' . $sd->id . '">Sterge</button></th></tr>',
+        'embed' => '<embed id="embd" data-id="' . $sd->id . '" src="/documente/furnizori/' . $sd->doc_id . '" width="500" height="700">');
+
+
+        return Response::json($data);
+
+    }
+
+    public function updSupplierDoc(Request $request)
+    {
+
+
+
+        $supplier_id = $request->supplier_id;
+
+
+        $file = $request->file('doc_id');
+
+        $name = time() . '-' . $file->getClientOriginalName();
+
+        $file->move('documente/furnizori', $name);
+
+        $sd = SupplierDocuments::create(['doc_id'=>$name,'supplier_id'=>$supplier_id]);
+
+        $data = NULL;
+
+        $data = array('tr' => '<tr id="tr' . $sd->id . '"><th scope="col">' . $sd->doc_id . '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' . $sd->id . '">Sterge</button></th></tr>',
+            'embed' => '<embed id="embd" data-id="' . $sd->id . '" src="/documente/furnizori/' . $sd->doc_id . '" width="500" height="700">');
+
+
+        return Response::json($data);
+
+    }
+
+    public function delSupplierDoc()
+    {
+        $id = Input::get('id');
+
+        $supplierDoc = SupplierDocuments::findOrFail($id);
+
+        unlink('documente/furnizori/' . $supplierDoc->doc_id);
+        $supplierDoc->delete();
+
     }
 }

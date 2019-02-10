@@ -8,7 +8,7 @@ class SupplierDocuments extends Model
 {
     //
     protected $fillable = [
-        'doc_id', 'supplier_id',
+        'doc_id', 'supplier_id','token'
 
     ];
 }
