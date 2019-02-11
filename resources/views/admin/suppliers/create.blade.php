@@ -125,11 +125,19 @@
                     $('.stergedoc').each(function(i){
 
                         var id=$(this).data('id');
-                        $.get('/delSupplierDoc?id=' + id, function (data) {
 
-
-
+                        $.ajax({
+                            url: '/delSupplierDoc?id=' + id,
+                            success: function(html) {
+                                strReturn = html;
+                            },
+                            async:false
                         });
+//                        $.get('/delSupplierDoc?id=' + id, function (data) {
+//
+//
+//
+//                        });
                     });
                 }
 
