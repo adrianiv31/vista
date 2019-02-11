@@ -71,7 +71,7 @@
             <hr>
 
             <div class="form-group">
-                {!! Form::submit('Creare furnizor', ['class'=>'btn btn-primary col-sm-3']) !!}
+                {!! Form::submit('Creare furnizor', ['class'=>'btn btn-primary col-sm-3', 'id' => 'submitbtn']) !!}
             </div>
 
 
@@ -114,21 +114,28 @@
     <script>
 
         $(document).ready(function () {
-
-            $(window).bind('beforeunload', function(e) {
-                $('.stergedoc').each(function(i){
-
-                    var id=$(this).data('id');
-                    $.get('/delSupplierDoc?id=' + id, function (data) {
-
-
-
-                    });
-                });
-            });
             var files = [];
 
             var token = Math.random().toString(36).slice(-8);
+
+            var formsubmitted = false;
+            $(window).on('beforeunload', function(e) {
+
+                if(!formsubmitted){
+                    $('.stergedoc').each(function(i){
+
+                        var id=$(this).data('id');
+                        $.get('/delSupplierDoc?id=' + id, function (data) {
+
+
+
+                        });
+                    });
+                }
+
+
+            });
+
 
 
             $('<input>').attr({
@@ -263,6 +270,15 @@
                 var id =$(this).find('.stergedoc').data('id');
                 $('#doc-pdf').html('<embed id="embd" data-id="' + id + '" src="/documente/furnizori/' + doc_id + '" width="500" height="700">');
             });
+
+            $("#fileupload").on( "submit", function( event ) {
+
+
+                formsubmitted = true;
+
+
+            });
+
 
         });
 

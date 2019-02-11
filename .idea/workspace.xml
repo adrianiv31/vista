@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b384264d-867c-4b40-86b6-7718d46da226" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/documente/furnizori/1549793617-147304819-Tema-5-Procese-Si-Fire-de-Executie.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/documente/furnizori/1549793617-663699.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/documente/furnizori/1549793930-663699.pdf" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AjaxController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AjaxController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/suppliers/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/suppliers/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/suppliers/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/suppliers/edit.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,8 +18,8 @@
       <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/suppliers/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="237" column="0" lean-forward="false" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+            <state relative-caret-position="329">
+              <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -952,12 +947,12 @@
       <workItem from="1548166935238" duration="229000" />
       <workItem from="1548654258654" duration="1445000" />
       <workItem from="1548676658446" duration="347000" />
-      <workItem from="1549384389146" duration="45818000" />
+      <workItem from="1549384389146" duration="48416000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137690000" />
+    <option name="totallyTimeSpent" value="140288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1600" height="828" extended-state="6" />
@@ -1449,8 +1444,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/suppliers/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="237" column="0" lean-forward="false" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
+        <state relative-caret-position="329">
+          <caret line="274" column="0" lean-forward="false" selection-start-line="274" selection-start-column="0" selection-end-line="274" selection-end-column="0" />
           <folding />
         </state>
       </provider>
