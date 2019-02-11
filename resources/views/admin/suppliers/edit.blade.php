@@ -85,7 +85,7 @@
         <div class="col-sm-6" id="prev">
             <h1>Documente atasate</h1>
             <div class="row">
-                <table class="table">
+                <table class="table table-hover">
                     <thead class="thead-light">
                     <tr>
 
@@ -96,7 +96,7 @@
                     <tbody id="doc">
                     @foreach($supplierDocs as $supplierDoc)
 
-                        <tr id="tr{{$supplierDoc->id}}">
+                        <tr id="tr{{$supplierDoc->id}}" class="tab-row">
                             <th scope="col">{{$supplierDoc->doc_id}}</th>
                             <th scope="col">
                                 <button class="btn-danger stergedoc" data-id="{{$supplierDoc->id}}">Sterge</button>
@@ -196,11 +196,11 @@
 
                 }
 
-                var el = $('#doc_id');
+                var el = $('.docid');
                 el.wrap("<form></form>").closest('form').get(0).reset();
                 el.unwrap();
-                $("#doc").html("");
-                $("#doc-pdf").html("");
+              //  $("#doc").html("");
+               // $("#doc-pdf").html("");
 //
             });
 
@@ -212,34 +212,41 @@
 
                     $('#tr' + id).remove();
 
-                    var embd = $('#embd');
 
-                    if (embd.data('id') == id) {
-
-                        if ($("#doc").children().length > 0) {
-
-                            var fis = $("#doc").children().first().children().first().html();
-                            $('#doc-pdf').html('<embed src="/documente/furnizori/' + fis + '" width="500" height="700">');
-
-                        }
-
-
-                    }
-                    if ($("#doc").children().length == 0) {
-
-                        $('#doc-pdf').html("");
-
-                    }
 
 
                     $.get('/delSupplierDoc?id=' + id, function (data) {
 
+                        var embd = $('#embd');
 
+                        if (embd.data('id') == id) {
+
+                            if ($("#doc").children().length > 0) {
+
+                                var fis = $("#doc").children().first().children().first().html();
+                                $('#doc-pdf').html('<embed src="/documente/furnizori/' + fis + '" width="500" height="700">');
+
+                            }
+
+
+                        }
+                        if ($("#doc").children().length == 0) {
+
+                            $('#doc-pdf').html("");
+
+                        }
                     });
 
 
-                }
-            );
+                });
+
+            $("#doc").on('click', '.tab-row', function(){
+
+                var doc_id = $(this).children().first().html();
+                var id =$(this).find('.stergedoc').data('id');
+                $('#doc-pdf').html('<embed id="embd" data-id="' + id + '" src="/documente/furnizori/' + doc_id + '" width="500" height="700">');
+            });
+
         });
 
 

@@ -254,7 +254,7 @@ class AjaxController extends Controller
 
         $data = NULL;
 
-        $data = array('tr' => '<tr id="tr' . $sd->id . '"><th scope="col">' . $sd->doc_id . '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' . $sd->id . '">Sterge</button></th></tr>',
+        $data = array('tr' => '<tr id="tr' . $sd->id . '" class="tab-row"><th scope="col">' . $sd->doc_id . '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' . $sd->id . '">Sterge</button></th></tr>',
         'embed' => '<embed id="embd" data-id="' . $sd->id . '" src="/documente/furnizori/' . $sd->doc_id . '" width="500" height="700">');
 
 
@@ -280,7 +280,7 @@ class AjaxController extends Controller
 
         $data = NULL;
 
-        $data = array('tr' => '<tr id="tr' . $sd->id . '"><th scope="col">' . $sd->doc_id . '</th><th scope="col"><button class="btn-danger stergedoc" data-id="' . $sd->id . '">Sterge</button></th></tr>',
+        $data = array('tr' => '<tr id="tr' . $sd->id . '" class="tab-row"><th scope="col">' . $sd->doc_id . '</th><th scope="col"><button class="btn-danger stergedoc upd" data-id="' . $sd->id . '">Sterge</button></th></tr>',
             'embed' => '<embed id="embd" data-id="' . $sd->id . '" src="/documente/furnizori/' . $sd->doc_id . '" width="500" height="700">');
 
 
