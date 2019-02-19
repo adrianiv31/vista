@@ -85,15 +85,30 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
+    Route::resource('admin/clients','AdminClientsController', ['names'=>[
+
+        'index'=>'admin.clients.index',
+        'create'=>'admin.clients.create',
+        'store'=>'admin.clients.store',
+        'edit'=>'admin.clients.edit',
+        'destroy'=>'admin.clients.destroy',
+
+    ]]);
+
     //Ajax
     Route::get('/cautaUsers','AjaxController@cautaUsers');
     Route::get('/cautaProducers','AjaxController@cautaProducers');
     Route::get('/cautaCategories','AjaxController@cautaCategories');
     Route::get('/cautaProducts','AjaxController@cautaProducts');
     Route::get('/cautaSupplier','AjaxController@cautaSupplier');
+    Route::get('/cautaClient','AjaxController@cautaClient');
     Route::post('/addSupplierDoc','AjaxController@addSupplierDoc');
     Route::post('/updSupplierDoc','AjaxController@updSupplierDoc');
     Route::get('/delSupplierDoc','AjaxController@delSupplierDoc');
+
+    Route::post('/addClientDoc','AjaxController@addClientDoc');
+    Route::post('/updClientDoc','AjaxController@updClientDoc');
+    Route::get('/delClientDoc','AjaxController@delClientDoc');
 
 });
 

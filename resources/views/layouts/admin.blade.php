@@ -139,16 +139,13 @@
                                 </li>
 
                                 <li>
-                                    <a href="/posts/create">CLIENȚI</a>
+                                    <a href="{{route('admin.clients.index')}}">CLIENȚI</a>
                                 </li>
 
                                 <li>
                                     <a href="{{route('admin.suppliers.index')}}">FURNIZORI</a>
                                 </li>
 
-                                <li>
-                                    <a href="/posts/create">DIRECTORI DE VÂNZĂRI</a>
-                                </li>
 
                                 <li>
                                     <a href="{{route('admin.categories.index')}}">CATEGORII DE PRODUSE</a>
