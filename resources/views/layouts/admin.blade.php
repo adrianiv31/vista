@@ -170,7 +170,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="/categories/create">ANEXA</a>
+                                    <a href="{{route('admin.attachments.index')}}">ANEXA</a>
                                 </li>
 
                                 <li>

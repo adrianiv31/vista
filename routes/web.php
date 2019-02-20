@@ -95,6 +95,16 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
+    Route::resource('admin/attachments','AdminAttachmentsController', ['names'=>[
+
+        'index'=>'admin.attachments.index',
+        'create'=>'admin.attachments.create',
+        'store'=>'admin.attachments.store',
+        'edit'=>'admin.attachments.edit',
+        'destroy'=>'admin.attachments.destroy',
+
+    ]]);
+
     //Ajax
     Route::get('/cautaUsers','AjaxController@cautaUsers');
     Route::get('/cautaProducers','AjaxController@cautaProducers');

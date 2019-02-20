@@ -98,7 +98,9 @@
 
                     </tbody>
                 </table>
-
+                <div class="text-center" id="spin">
+                    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                </div>
             </div>
             <div class="row" id="doc-pdf"></div>
         </div>
@@ -119,6 +121,8 @@
             var token = Math.random().toString(36).slice(-8);
 
             var formsubmitted = false;
+            $("#spin").hide();
+
             $(window).on('beforeunload', function(e) {
 
                 if(!formsubmitted){
@@ -189,12 +193,17 @@
                                 cache: false,
                                 contentType: false,
                                 processData: false,
+                                beforeSend: function () {
+                                    $("#spin").show();
+                                },
                                 type: 'POST',
                                 success: function (data) {
+                                    $("#spin").hide();
                                     $('#doc').append(data.tr);
                                     $('#doc-pdf').html(data.embed);
                                 },
                                 error: function (data) {
+                                    $("#spin").hide();
                                     console.log(data);
                                 }
                             });

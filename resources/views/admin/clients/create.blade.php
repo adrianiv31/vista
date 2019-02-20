@@ -106,7 +106,9 @@
                     <tr>
 
                         <th scope="col">Document</th>
-                        <th scope="col"></th>
+                        <th scope="col">
+
+                        </th>
                     </tr>
                     </thead>
                     <tbody id="doc">
@@ -115,6 +117,10 @@
                     </tbody>
                 </table>
 
+
+                <div class="text-center" id="spin">
+                    <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                </div>
             </div>
             <div class="row" id="doc-pdf"></div>
         </div>
@@ -135,19 +141,22 @@
             var token = Math.random().toString(36).slice(-8);
 
             var formsubmitted = false;
-            $(window).on('beforeunload', function(e) {
 
-                if(!formsubmitted){
-                    $('.stergedoc').each(function(i){
+            $("#spin").hide();
 
-                        var id=$(this).data('id');
+            $(window).on('beforeunload', function (e) {
+
+                if (!formsubmitted) {
+                    $('.stergedoc').each(function (i) {
+
+                        var id = $(this).data('id');
 
                         $.ajax({
                             url: '/delClientDoc?id=' + id,
-                            success: function(html) {
+                            success: function (html) {
                                 strReturn = html;
                             },
-                            async:false
+                            async: false
                         });
 //                        $.get('/delSupplierDoc?id=' + id, function (data) {
 //
@@ -159,7 +168,6 @@
 
 
             });
-
 
 
             $('<input>').attr({
@@ -205,12 +213,17 @@
                                 cache: false,
                                 contentType: false,
                                 processData: false,
+                                beforeSend: function () {
+                                  $("#spin").show();
+                                },
                                 type: 'POST',
                                 success: function (data) {
+                                    $("#spin").hide();
                                     $('#doc').append(data.tr);
                                     $('#doc-pdf').html(data.embed);
                                 },
                                 error: function (data) {
+                                    $("#spin").hide();
                                     console.log(data);
                                 }
                             });
@@ -244,8 +257,6 @@
                 $('#tr' + id).remove();
 
 
-
-
                 $.get('/delClientDoc?id=' + id, function (data) {
 
                     var embd = $('#embd');
@@ -271,15 +282,13 @@
 
             });
 
-            $('#btn_renunta').click(function (e){
+            $('#btn_renunta').click(function (e) {
 
 
+                $('.stergedoc').each(function (i) {
 
-                $('.stergedoc').each(function(i){
-
-                    var id=$(this).data('id');
+                    var id = $(this).data('id');
                     $.get('/delClientDoc?id=' + id, function (data) {
-
 
 
                     });
@@ -288,14 +297,14 @@
 
             });
 
-            $("#doc").on('click', '.tab-row', function(){
+            $("#doc").on('click', '.tab-row', function () {
 
                 var doc_id = $(this).children().first().html();
-                var id =$(this).find('.stergedoc').data('id');
+                var id = $(this).find('.stergedoc').data('id');
                 $('#doc-pdf').html('<embed id="embd" data-id="' + id + '" src="/documente/clienti/' + doc_id + '" width="500" height="700">');
             });
 
-            $("#fileupload").on( "submit", function( event ) {
+            $("#fileupload").on("submit", function (event) {
 
 
                 formsubmitted = true;
@@ -303,19 +312,19 @@
 
             });
 
-            $('#apia').change(function (){
+            $('#apia').change(function () {
 
                 var ha = $(this).val();
-                if(ha<=100){
+                if (ha <= 100) {
 
                     $("#tip").val("0 - 100 HA");
 
-                }else if(ha<=1000){
+                } else if (ha <= 1000) {
 
                     $("#tip").val("101 - 1000 HA");
 
                 }
-                else{
+                else {
 
                     $("#tip").val("> 1000 HA");
 
